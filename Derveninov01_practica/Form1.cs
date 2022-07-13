@@ -14,8 +14,8 @@ namespace Derveninov01_practica
     public partial class Form1 : Form
     {
         private Graphics graphics;
-        Field field;
-        Virus virus;
+        private Field field;
+        private Virus virus;
         private bool FirstStart = true;
         private int rows;
         private int columns;

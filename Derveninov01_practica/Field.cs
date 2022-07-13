@@ -93,7 +93,7 @@ namespace Derveninov01_practica
                         chanceToDie = virus.MortalityAged;
                     }
                     float notAtRisk = rnd.Next(0, 100);
-                    if (notAtRisk < 4) risk = 0;
+                    if (notAtRisk < 50 && age <= 14) risk = 0;
                     float chance = rnd.Next(0, 100);
                     if (chanceToHaveMask < chance)
                         mask = true;

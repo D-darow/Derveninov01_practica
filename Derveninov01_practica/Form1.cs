@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Derveninov01_practica
 {
+    // Главная форма
     public partial class Form1 : Form
     {
         private Graphics graphics;
@@ -19,14 +20,14 @@ namespace Derveninov01_practica
         private int rows;
         private int columns;
         private int resolution = 20;
-
+        // Конструктор
         public Form1()
         {
             InitializeComponent();
             field = new Field();
             virus = new Virus();
         }
-
+        // Метод отрисовки поля
         private void DrawField() {
             for (int i = 0; i < columns; i++)
             {
@@ -53,7 +54,7 @@ namespace Derveninov01_practica
             }
             field.ClearGotIllnes();
         }
-
+        // Следующий шаг
         private void NextStep()
         {
             if (field.EpidemicEnded)
@@ -84,12 +85,12 @@ namespace Derveninov01_practica
             days_int++;
             labelDays.Text = days_int.ToString();
         }
-
+        // Тик таймера
         private void timer1_Tick(object sender, EventArgs e)
         {
             NextStep();
         }
-
+        // Сброс поля
         private void ResetField() 
         {
             timer1.Stop();
@@ -107,32 +108,32 @@ namespace Derveninov01_practica
             graphics = Graphics.FromImage(pictureBox1.Image);
             DrawField();
         }
-
+        // Первое отображение формы
         private void Form1_Shown(object sender, EventArgs e)
         {
             virus.ResetVirus((float)nudRiskYoung.Value, (float)nudRiskAdult.Value, (float)nudRiskAged.Value,
                 (float)nudMortalityYoung.Value, (float)nudMortalityAdult.Value, (float)nudMortalityAged.Value);
             ResetField();
         }
-
+        // Событие нажатия кнопки сброса поля
         private void buttonReset_Click(object sender, EventArgs e)
         {
             virus.ResetVirus((float)nudRiskYoung.Value, (float)nudRiskAdult.Value, (float)nudRiskAged.Value,
                 (float)nudMortalityYoung.Value, (float)nudMortalityAdult.Value, (float)nudMortalityAged.Value);
             ResetField();
         }
-
+        // Событие нажатия кнопки "Шаг"
         private void buttonStep_Click(object sender, EventArgs e)
         {
             timer1.Stop();
             NextStep();
         }
-
+        // Событие нажатия кнопки "Старт"
         private void btnStart_Click(object sender, EventArgs e)
         {
             timer1.Start();
         }
-
+        // Событие нажатия кнопки "Стоп"
         private void buttonStop_Click(object sender, EventArgs e)
         {
             timer1.Stop();

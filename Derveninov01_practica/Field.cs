@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace Derveninov01_practica
 {
+    // Класс "Поле"
     internal class Field
     {
-        public List<List<Human>> HumanList { get; private set; }
-        public int Columns;
-        public int Rows;
-        public bool EpidemicEnded { get; private set; }
-
+        public List<List<Human>> HumanList { get; private set; } // Двумерный список людей
+        public int Columns; // Колонки
+        public int Rows; // Строки
+        public bool EpidemicEnded { get; private set; } // Флаг "Эпидемия законкчилась"
+        // Конструктор
         public Field()
         {
             HumanList = new List<List<Human>>();
             EpidemicEnded = false;
         }
-
+        // Проверка соседей
         public void CheckNeighbours(int x, int y)
         {
             Random r = new Random();
@@ -49,7 +50,7 @@ namespace Derveninov01_practica
                 }
             }
         }
-
+        // Сброс флага "Заразился сегодня"
         public void ClearGotIllnes()
         {
             for (int i = 0; i < Columns; i++)
@@ -60,7 +61,7 @@ namespace Derveninov01_practica
                 }
             }
         }
-
+        // Создание списка людей
         public void CreateHumanList(int columns, int rows, Virus virus, float chanceToHaveMask)
         {
             EpidemicEnded = false;
@@ -101,7 +102,7 @@ namespace Derveninov01_practica
             }
             HumanList[rows / 2][columns / 2].Vector = true;
         }
-
+        // Генерация поля в процессе эпидемии
         public void NextGeneration()
         {
             EpidemicEnded = true;
@@ -140,10 +141,10 @@ namespace Derveninov01_practica
                 }
             }
         }
-
+        // Результаты эпидемии
         public List<int> EpidemicResult()
         {
-            List<int> result;
+            List<int> result; // Массив для хранения результатов
             result = new List<int>();
             for (int i = 0; i < 7; i++)
                 result.Add(0);
@@ -188,7 +189,7 @@ namespace Derveninov01_practica
             }
             return result;
         }
-
+        // Очистить список людей
         public void DeleteHumanList()
         {
             HumanList.Clear();
